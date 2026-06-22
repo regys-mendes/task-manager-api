@@ -40,12 +40,12 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getTittle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTittle(String tittle) {
-        this.title = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
