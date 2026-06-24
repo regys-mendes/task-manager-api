@@ -1,6 +1,7 @@
 package com.regysmendes.taskmanger.services;
 
 import com.regysmendes.taskmanger.entities.Task;
+import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,14 @@ public class TaskService {
     public Task findById(Long id) {
         Optional<Task> obj = repository.findById(id);
         return obj.orElseThrow(() -> new RuntimeException("Id not found")) ;
+    }
+
+    public List<Task> findByPriority(TaskPriority priority) {
+        return repository.findByPriority(priority);
+    }
+
+    public Task insert(Task obj){
+      return repository.save(obj);
     }
 
 }
