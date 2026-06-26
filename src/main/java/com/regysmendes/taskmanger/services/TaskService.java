@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
-    private TaskRepository repository;
+    private final TaskRepository repository;
 
     public TaskService(TaskRepository repository) {
         this.repository = repository;
@@ -32,6 +32,11 @@ public class TaskService {
 
     public Task insert(Task obj){
       return repository.save(obj);
+    }
+
+    public void delete(Long id) {
+        findById(id);
+        repository.deleteById(id);
     }
 
 }
