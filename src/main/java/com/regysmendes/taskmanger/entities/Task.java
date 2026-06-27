@@ -56,6 +56,14 @@ public class Task implements Serializable {
         this.description = description;
     }
 
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public TaskPriority getPriority() {
+        return priority;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
