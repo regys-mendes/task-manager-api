@@ -23,7 +23,7 @@ public class TaskService {
 
     public Task findById(Long id) {
         Optional<Task> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new RuntimeException("Id not found")) ;
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Resource not found. Id " + id));
     }
 
     public List<Task> findByPriority(TaskPriority priority) {
