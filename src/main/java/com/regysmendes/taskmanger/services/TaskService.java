@@ -39,4 +39,17 @@ public class TaskService {
         repository.deleteById(id);
     }
 
+    public Task update(Long id, Task obj){
+        Task task = findById(id);
+        taskUpdate(task, obj);
+       return repository.save(task);
+    }
+
+    public void taskUpdate(Task task, Task objUpdate){
+       task.setTitle(objUpdate.getTitle());
+       task.setPriority(objUpdate.getPriority());
+       task.setDescription(objUpdate.getDescription());
+    }
+
+
 }

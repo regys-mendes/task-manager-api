@@ -55,4 +55,10 @@ public class TaskResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task obj){
+        Task task = service.update(id, obj);
+        return ResponseEntity.ok().body(task);
+    }
+
 }

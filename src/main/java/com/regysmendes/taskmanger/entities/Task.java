@@ -64,6 +64,10 @@ public class Task implements Serializable {
         return priority;
     }
 
+    public void setPriority(TaskPriority priority) {
+        this.priority = priority;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
