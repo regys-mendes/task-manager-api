@@ -2,6 +2,7 @@ package com.regysmendes.taskmanger.resource;
 
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
+import com.regysmendes.taskmanger.entities.TaskStatus;
 import com.regysmendes.taskmanger.services.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +59,12 @@ public class TaskResource {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task obj){
         Task task = service.update(id, obj);
+        return ResponseEntity.ok().body(task);
+    }
+
+    @PatchMapping(value = "/{id}/status")
+    public ResponseEntity<Task> status(@PathVariable Long id, @RequestBody TaskStatus status){
+        Task task = service.updateStatus(id, status);
         return ResponseEntity.ok().body(task);
     }
 

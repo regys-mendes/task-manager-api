@@ -2,8 +2,10 @@ package com.regysmendes.taskmanger.services;
 
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
+import com.regysmendes.taskmanger.entities.TaskStatus;
 import com.regysmendes.taskmanger.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +51,12 @@ public class TaskService {
        task.setTitle(objUpdate.getTitle());
        task.setPriority(objUpdate.getPriority());
        task.setDescription(objUpdate.getDescription());
+    }
+
+    public Task updateStatus(Long id, TaskStatus newStatus){
+        Task task  = findById(id);
+        task.setStatus(newStatus);
+        return repository.save(task);
     }
 
 
