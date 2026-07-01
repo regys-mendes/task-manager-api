@@ -5,7 +5,6 @@ import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
 import com.regysmendes.taskmanger.repository.TaskRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PatchMapping;
 
 import java.util.List;
 import java.util.Optional;
