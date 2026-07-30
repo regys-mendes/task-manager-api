@@ -1,5 +1,7 @@
 package com.regysmendes.taskmanger.services;
 
+import com.regysmendes.taskmanger.dto.TaskInsertDTO;
+import com.regysmendes.taskmanger.dto.TaskResponseDTO;
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
@@ -31,8 +33,11 @@ public class TaskService {
         return repository.findByPriority(priority);
     }
 
-    public Task insert(Task obj){
-      return repository.save(obj);
+    public TaskResponseDTO insert(TaskInsertDTO dto) {
+        Task task = new Task(null, dto.getTitle(), dto.getDescription(), dto.getPriority(), dto.getStatus());
+        task = repository.save(task);
+        TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
+        return responseDTO;
     }
 
     public void delete(Long id) {
@@ -40,20 +45,20 @@ public class TaskService {
         repository.deleteById(id);
     }
 
-    public Task update(Long id, Task obj){
+    public Task update(Long id, Task obj) {
         Task task = findById(id);
         taskUpdate(task, obj);
-       return repository.save(task);
+        return repository.save(task);
     }
 
-    public void taskUpdate(Task task, Task objUpdate){
-       task.setTitle(objUpdate.getTitle());
-       task.setPriority(objUpdate.getPriority());
-       task.setDescription(objUpdate.getDescription());
+    public void taskUpdate(Task task, Task objUpdate) {
+        task.setTitle(objUpdate.getTitle());
+        task.setPriority(objUpdate.getPriority());
+        task.setDescription(objUpdate.getDescription());
     }
 
-    public Task updateStatus(Long id, TaskStatus newStatus){
-        Task task  = findById(id);
+    public Task updateStatus(Long id, TaskStatus newStatus) {
+        Task task = findById(id);
         task.setStatus(newStatus);
         return repository.save(task);
     }

@@ -1,5 +1,7 @@
 package com.regysmendes.taskmanger.resource;
 
+import com.regysmendes.taskmanger.dto.TaskInsertDTO;
+import com.regysmendes.taskmanger.dto.TaskResponseDTO;
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
@@ -40,8 +42,8 @@ public class TaskResource {
     }
 
     @PostMapping
-    public ResponseEntity<Task> insert(@RequestBody Task obj){
-        Task newObj = service.insert(obj);
+    public ResponseEntity<TaskResponseDTO> insert(@RequestBody TaskInsertDTO obj){
+        TaskResponseDTO newObj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
