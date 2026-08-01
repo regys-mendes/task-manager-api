@@ -2,6 +2,7 @@ package com.regysmendes.taskmanger.services;
 
 import com.regysmendes.taskmanger.dto.TaskInsertDTO;
 import com.regysmendes.taskmanger.dto.TaskResponseDTO;
+import com.regysmendes.taskmanger.dto.TaskUpdateDTO;
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
@@ -45,13 +46,15 @@ public class TaskService {
         repository.deleteById(id);
     }
 
-    public Task update(Long id, Task obj) {
+    public TaskResponseDTO update(Long id, TaskUpdateDTO dto) {
         Task task = findById(id);
-        taskUpdate(task, obj);
-        return repository.save(task);
+        taskUpdate(task, dto);
+        repository.save(task);
+        TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
+        return  responseDTO;
     }
 
-    public void taskUpdate(Task task, Task objUpdate) {
+    public void taskUpdate(Task task, TaskUpdateDTO objUpdate) {
         task.setTitle(objUpdate.getTitle());
         task.setPriority(objUpdate.getPriority());
         task.setDescription(objUpdate.getDescription());

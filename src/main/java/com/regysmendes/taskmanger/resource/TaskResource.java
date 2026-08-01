@@ -2,6 +2,7 @@ package com.regysmendes.taskmanger.resource;
 
 import com.regysmendes.taskmanger.dto.TaskInsertDTO;
 import com.regysmendes.taskmanger.dto.TaskResponseDTO;
+import com.regysmendes.taskmanger.dto.TaskUpdateDTO;
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
@@ -59,8 +60,8 @@ public class TaskResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task obj){
-        Task task = service.update(id, obj);
+    public ResponseEntity<TaskResponseDTO> update(@PathVariable Long id, @RequestBody TaskUpdateDTO dto){
+        TaskResponseDTO task = service.update(id, dto);
         return ResponseEntity.ok().body(task);
     }
 
