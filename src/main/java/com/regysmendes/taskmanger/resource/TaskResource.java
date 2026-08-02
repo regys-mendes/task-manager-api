@@ -37,8 +37,8 @@ public class TaskResource {
     }
 
     @GetMapping(value = "/priority/{priority}")
-    public ResponseEntity<List <Task>> findByPriority(@PathVariable TaskPriority priority){
-        List<Task> obj = service.findByPriority(priority);
+    public ResponseEntity<List <TaskResponseDTO>> findByPriority(@PathVariable TaskPriority priority){
+        List<TaskResponseDTO> obj = service.findByPriority(priority);
         return ResponseEntity.ok().body(obj);
     }
 

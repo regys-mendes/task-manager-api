@@ -9,6 +9,7 @@ import com.regysmendes.taskmanger.entities.TaskStatus;
 import com.regysmendes.taskmanger.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +36,15 @@ public class TaskService {
         return new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
     }
 
-    public List<Task> findByPriority(TaskPriority priority) {
-        return repository.findByPriority(priority);
+    public List<TaskResponseDTO> findByPriority(TaskPriority priority) {
+        List<Task> list = repository.findByPriority(priority);
+        List<TaskResponseDTO> result = new ArrayList<>();
+
+        for (Task task: list){
+            TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
+            result.add(responseDTO);
+        }
+        return result;
     }
 
     public TaskResponseDTO insert(TaskInsertDTO dto) {
