@@ -25,9 +25,14 @@ public class TaskService {
         return repository.findAll();
     }
 
-    public Task findById(Long id) {
+    public Task findByIdIdentity(Long id) {
         Optional<Task> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Resource not found. Id " + id));
+    }
+
+    public TaskResponseDTO findById(Long id){
+        Task task = findByIdIdentity(id);
+        return new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
     }
 
     public List<Task> findByPriority(TaskPriority priority) {
@@ -42,12 +47,12 @@ public class TaskService {
     }
 
     public void delete(Long id) {
-        findById(id);
+        findByIdIdentity(id);
         repository.deleteById(id);
     }
 
     public TaskResponseDTO update(Long id, TaskUpdateDTO dto) {
-        Task task = findById(id);
+        Task task = findByIdIdentity(id);
         taskUpdate(task, dto);
         repository.save(task);
         TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
@@ -61,7 +66,7 @@ public class TaskService {
     }
 
     public Task updateStatus(Long id, TaskStatus newStatus) {
-        Task task = findById(id);
+        Task task = findByIdIdentity(id);
         task.setStatus(newStatus);
         return repository.save(task);
     }
