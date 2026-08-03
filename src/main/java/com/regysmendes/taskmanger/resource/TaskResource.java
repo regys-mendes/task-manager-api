@@ -25,8 +25,8 @@ public class TaskResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> findAll() {
-        List<Task> obj = service.findAll();
+    public ResponseEntity<List<TaskResponseDTO>> findAll() {
+        List<TaskResponseDTO> obj = service.findAll();
         return ResponseEntity.ok().body(obj);
     }
 

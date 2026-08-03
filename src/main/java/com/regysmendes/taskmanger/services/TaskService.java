@@ -22,9 +22,18 @@ public class TaskService {
         this.repository = repository;
     }
 
-    public List<Task> findAll() {
-        return repository.findAll();
-    }
+    public List<TaskResponseDTO> findAll() {
+       List<Task> list = repository.findAll();
+       List<TaskResponseDTO> result = new ArrayList<>();
+
+       for (Task task: list){
+
+           TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
+
+           result.add(responseDTO);
+       }
+       return result;
+     }
 
     public Task findByIdIdentity(Long id) {
         Optional<Task> obj = repository.findById(id);
