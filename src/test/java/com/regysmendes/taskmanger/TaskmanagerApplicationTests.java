@@ -1,6 +1,7 @@
 package com.regysmendes.taskmanger;
 
-import com.regysmendes.taskmanger.entities.Task;
+import com.regysmendes.taskmanger.dto.TaskInsertDTO;
+import com.regysmendes.taskmanger.dto.TaskResponseDTO;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
 import com.regysmendes.taskmanger.services.ObjectNotFoundException;
@@ -30,8 +31,8 @@ class TaskmanagerApplicationTests {
 
 	@Test
 	void shouldInsertAndFindTask() {
-		Task task = new Task(null, "Teste", "Descrição", TaskPriority.ALTA, TaskStatus.PENDENTE);
-		Task saved = service.insert(task);
+		TaskInsertDTO task = new TaskInsertDTO("Teste", "Descrição", TaskPriority.ALTA, TaskStatus.PENDENTE);
+		TaskResponseDTO saved = service.insert(task);
 
 		assertNotNull(saved.getId());
 		assertEquals("Teste", saved.getTitle());

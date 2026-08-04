@@ -1,5 +1,7 @@
 package com.regysmendes.taskmanger.services;
 
+import com.regysmendes.taskmanger.dto.TaskResponseDTO;
+import com.regysmendes.taskmanger.dto.TaskUpdateDTO;
 import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.TaskPriority;
 import com.regysmendes.taskmanger.entities.TaskStatus;
@@ -29,12 +31,12 @@ class TaskServiceTest {
     void update(){
 
         Task existingTask = new Task(1L, "Título antigo", "Descrição antiga", TaskPriority.BAIXA, TaskStatus.PENDENTE);
-        Task updatedData = new Task(null, "Título novo", "Descrição nova", TaskPriority.ALTA, TaskStatus.PENDENTE);
+        TaskUpdateDTO updatedData = new TaskUpdateDTO("Título novo", "Descrição nova", TaskPriority.ALTA);
 
         when(repository.findById(1L)).thenReturn(Optional.of(existingTask));
         when(repository.save(any())).thenReturn(existingTask);
 
-        Task result = service.update(1L, updatedData);
+        TaskResponseDTO result = service.update(1L, updatedData);
 
         assertEquals("Título novo", result.getTitle());
         assertEquals(TaskPriority.ALTA, result.getPriority());
