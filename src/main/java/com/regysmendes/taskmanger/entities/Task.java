@@ -2,12 +2,11 @@ package com.regysmendes.taskmanger.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_task")
-public class Task implements Serializable {
+public class Task {
 
     public Task(){
     }
@@ -79,9 +78,5 @@ public class Task implements Serializable {
         return Objects.equals(id, task.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
 

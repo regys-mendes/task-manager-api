@@ -1,4 +1,4 @@
-package com.regysmendes.taskmanger.resource.exceptions;
+package com.regysmendes.taskmanger.exceptions;
 
 import com.regysmendes.taskmanger.services.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
