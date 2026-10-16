@@ -1,0 +1,17 @@
+spring:
+    datasource:
+        password: 118820
+        url: jdbc:postgresql://localhost:5432/taskmanager
+        username: postgres
+    expiration:
+        $JWT_EXPIRATION: 900000
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+    jwt: 'null'
+    key:
+        $JWT_KEY: G_eEPBUkV7z!hrQ0btQTnk4vxQP12d!29=sX`lz-pOxVq#a8=Mnt6Ct30LeaB&Nn`RAiUJj!WFwuwYITLs7Kt`pClBotaoKuZbO_unm-EXITwz128No7VvHHGm9mqZ0HLdiBzp4gnrF_=jZSxNpKylLgJQSIiLxMckq4Qpfh3ADDICUuEV8UiatoojVO_9NKpHPqqFw!s01O_W6HuuzL!nVz=`8DqbfYrdq4&Gs$WktBVL$OLi!w0&&0W5xuTi&H6Uc=F`GWEbPlw`D624YyVH3OwS=CW7Uay!KUX5!t4UPRtxPbULVD1A6uE-pi5BchdS!&B1bb1Q3&aiZel22Pa6ne
