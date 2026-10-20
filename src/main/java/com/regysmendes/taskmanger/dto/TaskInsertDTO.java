@@ -1,7 +1,7 @@
 package com.regysmendes.taskmanger.dto;
 
-import com.regysmendes.taskmanger.entities.TaskPriority;
-import com.regysmendes.taskmanger.entities.TaskStatus;
+import com.regysmendes.taskmanger.enums.TaskPriority;
+import com.regysmendes.taskmanger.enums.TaskStatus;
 
 import java.io.Serializable;
 

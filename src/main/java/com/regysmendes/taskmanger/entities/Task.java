@@ -1,5 +1,7 @@
 package com.regysmendes.taskmanger.entities;
 
+import com.regysmendes.taskmanger.enums.TaskPriority;
+import com.regysmendes.taskmanger.enums.TaskStatus;
 import jakarta.persistence.*;
 
 import java.util.*;

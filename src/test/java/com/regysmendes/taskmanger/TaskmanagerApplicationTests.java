@@ -2,8 +2,8 @@ package com.regysmendes.taskmanger;
 
 import com.regysmendes.taskmanger.dto.TaskInsertDTO;
 import com.regysmendes.taskmanger.dto.TaskResponseDTO;
-import com.regysmendes.taskmanger.entities.TaskPriority;
-import com.regysmendes.taskmanger.entities.TaskStatus;
+import com.regysmendes.taskmanger.enums.TaskPriority;
+import com.regysmendes.taskmanger.enums.TaskStatus;
 import com.regysmendes.taskmanger.services.ObjectNotFoundException;
 import com.regysmendes.taskmanger.services.TaskService;
 import org.junit.jupiter.api.Test;

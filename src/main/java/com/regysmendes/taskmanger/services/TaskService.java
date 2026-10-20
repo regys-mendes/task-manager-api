@@ -4,8 +4,8 @@ import com.regysmendes.taskmanger.dto.TaskInsertDTO;
 import com.regysmendes.taskmanger.dto.TaskResponseDTO;
 import com.regysmendes.taskmanger.dto.TaskUpdateDTO;
 import com.regysmendes.taskmanger.entities.Task;
-import com.regysmendes.taskmanger.entities.TaskPriority;
-import com.regysmendes.taskmanger.entities.TaskStatus;
+import com.regysmendes.taskmanger.enums.TaskPriority;
+import com.regysmendes.taskmanger.enums.TaskStatus;
 import com.regysmendes.taskmanger.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 

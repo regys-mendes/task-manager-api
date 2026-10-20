@@ -1,6 +1,6 @@
 package com.regysmendes.taskmanger.dto;
 
-import com.regysmendes.taskmanger.entities.TaskPriority;
+import com.regysmendes.taskmanger.enums.TaskPriority;
 
 public class TaskUpdateDTO {
 

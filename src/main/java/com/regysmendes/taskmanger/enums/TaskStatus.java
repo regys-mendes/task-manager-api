@@ -1,4 +1,4 @@
-package com.regysmendes.taskmanger.entities;
+package com.regysmendes.taskmanger.enums;
 
 public enum TaskStatus {
 
