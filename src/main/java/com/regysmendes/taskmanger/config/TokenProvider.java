@@ -14,7 +14,7 @@ import java.util.Date;
 @Component
 public class TokenProvider {
 
-    @Value("${jwt_expiration}")
+    @Value("${jwt.expiration}")
     private Long expirationTime;
 
     @Value("${jwt.key}")
