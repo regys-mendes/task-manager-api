@@ -15,6 +15,13 @@ public class RolesEntity implements GrantedAuthority {
     private Integer id;
     private String name;
 
+    public RolesEntity() {
+    }
+
+    public RolesEntity(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     @Override
     public @Nullable String getAuthority() {
