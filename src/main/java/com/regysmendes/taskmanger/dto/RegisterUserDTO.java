@@ -2,7 +2,7 @@ package com.regysmendes.taskmanger.dto;
 
 import java.io.Serializable;
 
-public class TaskUserDTO implements Serializable {
+public class RegisterUserDTO implements Serializable {
 
     private String name;
     private String email;
