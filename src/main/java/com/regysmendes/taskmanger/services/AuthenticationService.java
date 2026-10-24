@@ -5,7 +5,6 @@ import com.regysmendes.taskmanger.dto.LoginUserDTO;
 import com.regysmendes.taskmanger.dto.RegisterUserDTO;
 import com.regysmendes.taskmanger.dto.TokenResponseDTO;
 import com.regysmendes.taskmanger.entities.RolesEntity;
-import com.regysmendes.taskmanger.entities.Task;
 import com.regysmendes.taskmanger.entities.User;
 import com.regysmendes.taskmanger.enums.RoleTypeEnum;
 import com.regysmendes.taskmanger.repository.RolesRepository;
@@ -42,7 +41,7 @@ public class AuthenticationService {
     }
 
     public void register(RegisterUserDTO dto) throws BadRequestException {
-        User user = userRepository.findByEmail(dto.getEmail())
+        User user = userRepository.findByEmail(dto.email())
                 .orElse(null);
 
         if (user != null){
@@ -55,16 +54,16 @@ public class AuthenticationService {
                         .build()));
 
         userRepository.save(User.builder()
-                .name(dto.getName())
-                .email(dto.getEmail())
-                .password(passwordEncoder.encode(dto.getPassword()))
+                .name(dto.name())
+                .email(dto.email())
+                .password(passwordEncoder.encode(dto.password()))
                 .roles(Set.of(role))
                 .build());
     }
 
     public TokenResponseDTO login(LoginUserDTO dto) throws BadRequestException{
          try {
-         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
+         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.email(), dto.password()));
          String token = tokenProvider.generateToken(authentication);
          return new  TokenResponseDTO(token, expirationTime);
          }

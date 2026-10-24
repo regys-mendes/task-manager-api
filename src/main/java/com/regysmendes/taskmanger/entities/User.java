@@ -20,7 +20,7 @@ public class User implements UserDetails {
      private String email;
      private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tasks_roles",
             joinColumns = @JoinColumn(name = "tasks_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))

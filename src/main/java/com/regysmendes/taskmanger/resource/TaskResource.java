@@ -48,7 +48,7 @@ public class TaskResource {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newObj.getId())
+                .buildAndExpand(newObj.id())
                 .toUri();
         return ResponseEntity.created(uri).body(newObj);
     }

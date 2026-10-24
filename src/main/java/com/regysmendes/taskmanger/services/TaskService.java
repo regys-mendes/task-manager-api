@@ -57,7 +57,7 @@ public class TaskService {
     }
 
     public TaskResponseDTO insert(TaskInsertDTO dto) {
-        Task task = new Task(null, dto.getTitle(), dto.getDescription(), dto.getPriority(), dto.getStatus());
+        Task task = new Task(null, dto.title(), dto.description(), dto.priority(), dto.status());
         task = repository.save(task);
         TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
         return responseDTO;
@@ -77,9 +77,9 @@ public class TaskService {
     }
 
     public void taskUpdate(Task task, TaskUpdateDTO objUpdate) {
-        task.setTitle(objUpdate.getTitle());
-        task.setPriority(objUpdate.getPriority());
-        task.setDescription(objUpdate.getDescription());
+        task.setTitle(objUpdate.title());
+        task.setPriority(objUpdate.priority());
+        task.setDescription(objUpdate.description());
     }
 
     public Task updateStatus(Long id, TaskStatus newStatus) {
