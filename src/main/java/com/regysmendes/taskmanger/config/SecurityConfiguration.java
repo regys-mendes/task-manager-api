@@ -36,7 +36,7 @@ public class SecurityConfiguration {
                                     response.setStatus(HttpStatus.FORBIDDEN.value());
                                 }))
                 .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
