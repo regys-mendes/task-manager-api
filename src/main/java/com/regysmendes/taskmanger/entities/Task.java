@@ -19,6 +19,9 @@ public class Task {
     private String title;
     private String description;
 
+    @ManyToOne()
+    private User user;
+
     @Enumerated(EnumType.STRING)
     private TaskPriority priority;
 
