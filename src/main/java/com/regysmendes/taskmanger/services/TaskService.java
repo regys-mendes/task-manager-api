@@ -4,9 +4,11 @@ import com.regysmendes.taskmanger.dto.TaskInsertDTO;
 import com.regysmendes.taskmanger.dto.TaskResponseDTO;
 import com.regysmendes.taskmanger.dto.TaskUpdateDTO;
 import com.regysmendes.taskmanger.entities.Task;
+import com.regysmendes.taskmanger.entities.User;
 import com.regysmendes.taskmanger.enums.TaskPriority;
 import com.regysmendes.taskmanger.enums.TaskStatus;
 import com.regysmendes.taskmanger.repository.TaskRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,12 +25,13 @@ public class TaskService {
     }
 
     public List<TaskResponseDTO> findAll() {
-       List<Task> list = repository.findAll();
+       User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       List<Task> list = repository.findByUserId(user.getId());
        List<TaskResponseDTO> result = new ArrayList<>();
 
-       for (Task task: list){
+       for (Task tasksByUser: list){
 
-           TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
+           TaskResponseDTO responseDTO = new TaskResponseDTO(tasksByUser.getId(), tasksByUser.getTitle(), tasksByUser.getDescription(), tasksByUser.getPriority(), tasksByUser.getStatus());
 
            result.add(responseDTO);
        }
