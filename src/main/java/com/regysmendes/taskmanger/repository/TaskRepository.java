@@ -1,6 +1,7 @@
 package com.regysmendes.taskmanger.repository;
 
 import com.regysmendes.taskmanger.entities.Task;
+import com.regysmendes.taskmanger.entities.User;
 import com.regysmendes.taskmanger.enums.TaskPriority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByPriority(TaskPriority priority);
 
     List<Task> findByUserId(Long userId);
+
+    List<Task> findByPriorityAndUserId(TaskPriority priority, Long userId);
 }

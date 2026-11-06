@@ -49,7 +49,8 @@ public class TaskService {
     }
 
     public List<TaskResponseDTO> findByPriority(TaskPriority priority) {
-        List<Task> list = repository.findByPriority(priority);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Task> list = repository.findByPriorityAndUserId(priority, user.getId());
         List<TaskResponseDTO> result = new ArrayList<>();
 
         for (Task task: list){
