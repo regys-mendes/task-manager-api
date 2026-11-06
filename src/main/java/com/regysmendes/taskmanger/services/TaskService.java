@@ -60,7 +60,9 @@ public class TaskService {
     }
 
     public TaskResponseDTO insert(TaskInsertDTO dto) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Task task = new Task(null, dto.title(), dto.description(), dto.priority(), dto.status());
+        task.setUser(user);
         task = repository.save(task);
         TaskResponseDTO responseDTO = new TaskResponseDTO(task.getId(), task.getTitle(), task.getDescription(), task.getPriority(), task.getStatus());
         return responseDTO;
