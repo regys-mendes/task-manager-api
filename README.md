@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/regys-mendes/task-manager-api/actions/workflows/ci.yml/badge.svg)
 
-> API REST para gerenciamento de tarefas com autenticação JWT, controle de acesso por roles, DTOs, testes automatizados e CI — desenvolvida com Spring Boot e PostgreSQL.
+> API REST para gerenciamento de tarefas por usuário, com autenticação JWT, perfis de acesso (roles), DTOs, testes automatizados e CI — desenvolvida com Spring Boot e PostgreSQL.
 
 ---
 
@@ -28,6 +28,7 @@
 - Task status management (`PENDENTE`, `EM_ANDAMENTO`, `CONCLUIDA`)
 - **User registration and login with JWT** — passwords hashed with BCrypt
 - **Roles** (`ADMIN`, `USER`) modeled with a many-to-many relationship; new users receive `USER` by default
+- **Ownership-based authorization:** every task belongs to the user who created it, and each user can only list, read, update and delete their own tasks (another user's task returns `404`)
 - Stateless security: every protected request is validated by a JWT filter
 - **DTO pattern** (Java records) separating the API layer from the persistence layer
 - Global exception handling with standardized error responses
@@ -61,6 +62,8 @@ src/main/java/com/regysmendes/taskmanger/
 
 Routes under `/auth/**` and the Swagger UI are public. Everything else requires a valid token.
 
+The authenticated user is read from the security context, so the client never sends who the owner is. A task created by a user is linked to them automatically, and every query is filtered by that user's id.
+
 ---
 
 ## 🔌 API Endpoints
@@ -76,13 +79,13 @@ Routes under `/auth/**` and the Swagger UI are public. Everything else requires 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/tasks` | List all tasks |
-| GET | `/tasks/{id}` | Find task by ID |
-| GET | `/tasks/priority/{priority}` | Filter tasks by priority |
-| POST | `/tasks` | Create a new task |
-| PUT | `/tasks/{id}` | Update task title, description and priority |
-| PATCH | `/tasks/{id}/status` | Update task status |
-| DELETE | `/tasks/{id}` | Delete a task |
+| GET | `/tasks` | List the authenticated user's tasks |
+| GET | `/tasks/{id}` | Find one of your tasks by ID |
+| GET | `/tasks/priority/{priority}` | Filter your tasks by priority |
+| POST | `/tasks` | Create a new task owned by the authenticated user |
+| PUT | `/tasks/{id}` | Update the title, description and priority of one of your tasks |
+| PATCH | `/tasks/{id}/status` | Update the status of one of your tasks |
+| DELETE | `/tasks/{id}` | Delete one of your tasks |
 
 ---
 
