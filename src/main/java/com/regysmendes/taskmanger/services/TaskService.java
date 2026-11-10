@@ -39,8 +39,14 @@ public class TaskService {
      }
 
     public Task findByIdIdentity(Long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<Task> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException("Resource not found. Id " + id));
+        Task task = obj.orElseThrow(() -> new ObjectNotFoundException("Resource not found. Id " + id));
+
+        if (task.getUser().getId().equals(user.getId())){
+            return task;
+        }
+        else throw new ObjectNotFoundException("Resource not found. Id " + id);
     }
 
     public TaskResponseDTO findById(Long id){
